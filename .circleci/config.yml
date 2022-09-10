@@ -14,23 +14,18 @@ jobs:
           name: install docker
           command: |
             apt update
-            apt-get -y install systemctl
-            apt update
             apt install -y apt-transport-https ca-certificates curl software-properties-common
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
             add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
             apt update -y
             apt install -y docker-ce
-            shutdown -r
-            
-            
+                
       - run:
           name: build and push adservice image
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             
-            systemctl start docker
             docker build -t $image .
             docker push $image
 
