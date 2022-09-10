@@ -19,7 +19,7 @@ jobs:
             add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
             apt update -y
             apt install -y docker-ce
-            systemd start docker
+            #systemd start docker
       - run:
           name: build and push adservice image
           command: |
