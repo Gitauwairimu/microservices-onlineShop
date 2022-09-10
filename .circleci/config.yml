@@ -26,6 +26,7 @@ jobs:
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             #systemd status docker.socket
+            chown $(whoami):docker /var/run/docker.sock
             docker build -t $image .
             docker push $image
 
