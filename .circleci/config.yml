@@ -14,7 +14,7 @@ jobs:
           name: Install and run frontend build
           command: |
             cd src/adservice
-            image = gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
+            image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             docker build -t $image
             docker push $image
 
