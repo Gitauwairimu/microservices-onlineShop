@@ -19,14 +19,14 @@ jobs:
             add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
             apt update -y
             apt install -y docker-ce
-            #systemd start docker
+            
       - run:
           name: build and push adservice image
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
-            systemd unmask docker
-            
+            apt-get -y install systemctl
+            systemctl start docker
             docker build -t $image .
             docker push $image
 
