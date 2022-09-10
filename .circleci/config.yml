@@ -4,14 +4,23 @@ version: 2.1
 jobs:
   build_adservice:
     docker:
-      - image: docker/dockerfile
+      - image: amazon/aws-cli
         #auth:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
       - run:
-          name: Install and run frontend build
+          name: install docker
+          command: |
+            sudo yum install -y yum-utils
+            sudo yum-config-manager \
+              --add-repo \
+              https://download.docker.com/linux/centos/docker-ce.repo
+            sudo yum install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+            sudo systemctl start docker
+      - run:
+          name: build and push adservice image
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
