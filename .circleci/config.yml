@@ -4,22 +4,22 @@ version: 2.1
 jobs:
   build_adservice:
     docker:
-      - image: amazon/aws-cli
+      - image: docker
         #auth:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run:
-          name: install docker
-          command: |
-            yum install -y yum-utils
-            yum-config-manager \
-              --add-repo \
-              https://download.docker.com/linux/centos/docker-ce.repo
-            yum check-update
-            yum install docker
-            systemctl start docker
+      # - run:
+      #     name: install docker
+      #     command: |
+      #       yum install -y yum-utils
+      #       yum-config-manager \
+      #         --add-repo \
+      #         https://download.docker.com/linux/centos/docker-ce.repo
+      #       yum check-update
+      #       yum install docker
+      #       systemctl start docker
       - run:
           name: build and push adservice image
           command: |
