@@ -14,8 +14,6 @@ jobs:
           name: install docker
           command: |
             apt update
-            apt-get remove systemd
-            apt update
             apt-get -y install systemctl
             apt update
             apt install -y apt-transport-https ca-certificates curl software-properties-common
@@ -24,6 +22,7 @@ jobs:
             apt update -y
             apt install -y docker-ce
             shutdown -r
+            
             
       - run:
           name: build and push adservice image
