@@ -14,7 +14,7 @@ jobs:
           name: install docker
           command: |
             apt update
-            apt-get remove –purge –auto-remove systemd
+            apt-get remove systemd
             apt update
             apt-get -y install systemctl
             apt update
