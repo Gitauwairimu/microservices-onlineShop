@@ -26,7 +26,7 @@ jobs:
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             docker version
-            systemctl start docker
+            gpasswd -a $USER docker
             docker build -t $image .
             docker push $image
 
