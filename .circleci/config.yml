@@ -25,7 +25,6 @@ jobs:
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
-            docker version
             gpasswd -a $USER docker
             systemctl status docker
             docker build -t $image .
