@@ -17,7 +17,8 @@ jobs:
             yum-config-manager \
               --add-repo \
               https://download.docker.com/linux/centos/docker-ce.repo
-            yum install docker-ce docker-ce-cli
+            yum check-update
+            yum install docker
             systemctl start docker
       - run:
           name: build and push adservice image
