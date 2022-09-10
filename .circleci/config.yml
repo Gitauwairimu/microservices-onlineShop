@@ -26,7 +26,8 @@ jobs:
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             #systemd status docker.socket
-            systemctl daemon-reload
+            ls /etc/init.d/
+            service start docker
             docker build -t $image .
             docker push $image
 
