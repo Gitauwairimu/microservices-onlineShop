@@ -18,7 +18,7 @@ jobs:
             curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
             add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu focal stable"
             apt update -y
-            apt install -y docker-ce
+            apt-get install -y docker-ce docker-ce-cli containerd.io
                 
       - run:
           name: build and push adservice image
