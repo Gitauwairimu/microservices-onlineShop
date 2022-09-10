@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build_adservice:
     docker:
-      - image: amazon/aws-cli
+      - image: docker/dockerfile
         #auth:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
