@@ -24,7 +24,7 @@ jobs:
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
-            systemd unmask docker
+            #systemd unmask docker
             systemd start docker
             docker build -t $image .
             docker push $image
