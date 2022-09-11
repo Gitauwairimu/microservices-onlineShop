@@ -27,11 +27,11 @@ jobs:
 
     steps:
       - checkout
-      - setup_remote_docker
-      source=cartservice  
+      - setup_remote_docker  
       - run:
-          name: build and push $source image
+          name: build and push cartservice image
           command: |
+            source=cartservice
             cd src/$source/src/
             image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
             docker build -t $image .
