@@ -39,6 +39,141 @@ jobs:
             docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
             docker push $image
 
+  build_checkoutservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push checkoutservice image
+          command: |
+            source=checkoutservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_emailservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push emailservice image
+          command: |
+            source=emailservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_frontend:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push frontend image
+          command: |
+            source=frontend
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_loadgenerator:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push loadgenerator image
+          command: |
+            source=loadgenerator
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_paymentservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push paymentservice image
+          command: |
+            source=paymentservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_productcatalogservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push productcatalogservice image
+          command: |
+            source=productcatalogservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_recommendationservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push recommendationservice image
+          command: |
+            source=recommendationservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
+  build_shippingservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push shippingservice image
+          command: |
+            source=shippingservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
 
 # Orchestrate our job run sequence
 workflows:
@@ -46,4 +181,11 @@ workflows:
     jobs:
       - build_adservice
       - build_cartservice
-      
+      - build_checkoutservice
+      - build_emailservice
+      - build_frontend
+      - build_loadgenerator
+      - build_paymentservice
+      - build_productcatalogservice
+      - build_recommendationservice
+      - build_shippingservice
