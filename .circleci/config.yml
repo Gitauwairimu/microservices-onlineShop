@@ -33,6 +33,8 @@ jobs:
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             sleep 60
+            systemctl list-units | grep -i docker
+            chmod 666 /var/run/docker.sock
             #service docker start
             docker build -t $image .
             docker push $image
