@@ -32,8 +32,8 @@ jobs:
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
-            sleep 30
-            service docker start
+            sleep 60
+            #service docker start
             docker build -t $image .
             docker push $image
 
