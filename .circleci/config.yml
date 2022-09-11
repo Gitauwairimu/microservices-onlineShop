@@ -33,7 +33,7 @@ jobs:
           name: build and push adservice image
           command: |
             cd src/adservice
-            image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
+            image=gitauwairimu/onlineshop:adservice.$CIRCLE_WORKFLOW_ID
             # sleep 120
             # #chmod 666 /var/run/docker.sock
             # rc-service docker enable
