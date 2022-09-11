@@ -4,7 +4,7 @@ version: 2.1
 jobs:
   build_adservice:
     docker:
-      - image: centos
+      - image: alpine
         #auth:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
@@ -13,14 +13,9 @@ jobs:
       - run:
           name: install docker
           command: |
-            sed -i 's/mirrorlist/#mirrorlist/g' /etc/yum.repos.d/CentOS-*
-            sed -i 's|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g' /etc/yum.repos.d/CentOS-*
-
-            yum check-update
-            curl -fsSL https://get.docker.com/ | sh
-            systemctl start docker
-            systemctl status docker
-            usermod -aG docker $(whoami)
+            apk add --update docker openrc
+            service docker start
+            service docker status
 
       # - run:
       #     name: install docker
