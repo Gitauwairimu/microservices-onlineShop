@@ -175,9 +175,26 @@ jobs:
             docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
             docker push $image
 
+  build_currencyservice:
+    docker:
+      - image: docker:17.05.0-ce-git
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: build and push currencyservice image
+          command: |
+            source=currencyservice
+            cd src/$source
+            image=gitauwairimu/onlineshop:$source.$CIRCLE_WORKFLOW_ID
+            docker build -t $image .
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            docker push $image
+
 # Orchestrate our job run sequence
 workflows:
-  # build_and_push to dockerhub:
+  build_and_push to dockerhub:
     jobs:
       - build_adservice
       - build_cartservice
@@ -189,3 +206,4 @@ workflows:
       - build_productcatalogservice
       - build_recommendationservice
       - build_shippingservice
+      - build_currencyservice
