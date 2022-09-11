@@ -41,8 +41,8 @@ jobs:
             docker ps
             # systemd start docker
             docker build -t $image .
-            docker login -u=gitauwairimu -p=Guide147#
-            # docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
+            # docker login -u=gitauwairimu -p=Guide147#
+            docker login -u="${DOCKER_USERNAME}" -p="${DOCKER_PASSWORD}"
             # docker login --username=$DOCKER_USER --password=$DOCKER_PASS
             docker push $image
 
