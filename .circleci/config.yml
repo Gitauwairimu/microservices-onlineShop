@@ -4,18 +4,19 @@ version: 2.1
 jobs:
   build_adservice:
     docker:
-      - image: alpine
+      - image: docker:17.05.0-ce-git
+
         #auth:
         #  username: mydockerhub-user
         #  password: $DOCKERHUB_PASSWORD  # context / project UI env-var reference
     steps:
       - checkout
-      - run:
-          name: install docker
-          command: |
-            apk add --update docker openrc
-            # service docker start
-            # service docker status
+      # - run:
+      #     name: install docker
+      #     command: |
+      #       apk add --update docker openrc
+      #       # service docker start
+      #       # service docker status
 
       # - run:
       #     name: install docker
@@ -32,10 +33,10 @@ jobs:
           command: |
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
-            sleep 120
-            #chmod 666 /var/run/docker.sock
-            rc-service docker enable
-            rc-service docker restart
+            # sleep 120
+            # #chmod 666 /var/run/docker.sock
+            # rc-service docker enable
+            # rc-service docker restart
             docker build -t $image .
             docker push $image
 
