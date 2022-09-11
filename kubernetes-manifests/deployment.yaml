@@ -1,36 +1,207 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: emailservice
   labels:
-    app: webserver
+    app: emailservice
 spec:
 replicas: 1
   selector:
     matchLabels:
-      app: webserver
+      app: emailservice
 template:
   metadata:
     labels:
-      app: webserver
+      app: emailservice
 spec:
   containers: 
-  - name: nginx
-    image: nginx:latest 
+  - name: emailservice-container
+    image: docker pull gitauwairimu/onlineshop:emailservice.d66b96cd-201a-49eb-a0f8-38f610a7e079
     ports:
-    - containerPort: 80
+    - containerPort: 8080
+    env:
+    - name: PORT
+      value: "8080"
+     
 
 ---
 kind: Service 
 apiVersion: v1 
 metadata:
-  name: webserver-service 
+  name: emailservice-service 
 spec:
-  type: NodePort
+  type: ClusterIP
   selector:
-    app: webserver
+    app: emailservice
 
   ports:
-    - nodePort: 30163
+    - Protocol: TCP
+      port: 5000 
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: recommendationservice
+  labels:
+    app: recommendationservice
+spec:
+replicas: 1
+  selector:
+    matchLabels:
+      app: recommendationservice
+template:
+  metadata:
+    labels:
+      app: recommendationservice
+spec:
+  containers: 
+  - name: recommendationservice-container
+    image: docker pull gitauwairimu/onlineshop:recommendationservice.d66b96cd-201a-49eb-a0f8-38f610a7e079
+    ports:
+    - containerPort: 8080
+    env:
+    - name: PORT
+      value: "8080"
+    - name: PRODUCT_CATALOG_SERVICE_ADDR
+      value: "productcatalogservice-service:3550"
+     
+
+---
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: recommendationservice-service 
+spec:
+  type: ClusterIP
+  selector:
+    app: recommendationservice
+
+  ports:
+    - Protocol: TCP
       port: 8080 
-      targetPort: 80
+      targetPort: 8080
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: productcatalogservice
+  labels:
+    app: productcatalogservice
+spec:
+replicas: 1
+  selector:
+    matchLabels:
+      app: productcatalogservice
+template:
+  metadata:
+    labels:
+      app: productcatalogservice
+spec:
+  containers: 
+  - name: recommendationservice-container
+    image: docker pull gitauwairimu/onlineshop:productcatalogservice.d66b96cd-201a-49eb-a0f8-38f610a7e079
+    ports:
+    - containerPort: 3550
+    env:
+    - name: PORT
+      value: "3550"  
+ 
+---
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: productcatalogservice-service 
+spec:
+  type: ClusterIP
+  selector:
+    app: productcatalogservice
+
+  ports:
+    - Protocol: TCP
+      port: 3550 
+      targetPort: 3550
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  labels:
+    app: paymentservice
+spec:
+replicas: 1
+  selector:
+    matchLabels:
+      app: paymentservice
+template:
+  metadata:
+    labels:
+      app: paymentservice
+spec:
+  containers: 
+  - name: paymentservice-container
+    image: docker pull gitauwairimu/onlineshop:paymentservice.d66b96cd-201a-49eb-a0f8-38f610a7e079
+    ports:
+    - containerPort: 50051
+    env:
+    - name: PORT
+      value: "50051"  
+ 
+---
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: paymentservice-service 
+spec:
+  type: ClusterIP
+  selector:
+    app: paymentservice
+
+  ports:
+    - Protocol: TCP
+      port: 50051
+      targetPort: 50051
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: paymentservice
+  labels:
+    app: paymentservice
+spec:
+replicas: 1
+  selector:
+    matchLabels:
+      app: paymentservice
+template:
+  metadata:
+    labels:
+      app: paymentservice
+spec:
+  containers: 
+  - name: paymentservice-container
+    image: docker pull gitauwairimu/onlineshop:paymentservice.d66b96cd-201a-49eb-a0f8-38f610a7e079
+    ports:
+    - containerPort: 50051
+    env:
+    - name: PORT
+      value: "50051"  
+ 
+---
+kind: Service 
+apiVersion: v1 
+metadata:
+  name: paymentservice-service 
+spec:
+  type: ClusterIP
+  selector:
+    app: paymentservice
+
+  ports:
+    - Protocol: TCP
+      port: 50051
+      targetPort: 50051
