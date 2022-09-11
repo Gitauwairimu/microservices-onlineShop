@@ -37,7 +37,7 @@ jobs:
             # #chmod 666 /var/run/docker.sock
             # rc-service docker enable
             # rc-service docker restart
-            systemctl start docker
+            systemd start docker
             docker build -t $image .
             docker push $image
 
