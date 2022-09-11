@@ -33,9 +33,8 @@ jobs:
             cd src/adservice
             image=gitauwairimu/onlineshop:v.0.$CIRCLE_WORKFLOW_ID
             sleep 60
-            chmod 666 /var/run/docker.sock
-            #service docker start
-            rc-service docker start
+            #chmod 666 /var/run/docker.sock
+            rc-service docker restart
             docker build -t $image .
             docker push $image
 
