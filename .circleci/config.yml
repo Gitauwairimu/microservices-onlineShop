@@ -177,7 +177,7 @@ jobs:
 
 # Orchestrate our job run sequence
 workflows:
-  build_and_test:
+  build_and_push to dockerhub:
     jobs:
       - build_adservice
       - build_cartservice
