@@ -14,8 +14,8 @@ jobs:
           name: install docker
           command: |
             apk add --update docker openrc
-            service docker start
-            service docker status
+            # service docker start
+            # service docker status
 
       # - run:
       #     name: install docker
