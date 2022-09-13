@@ -217,7 +217,7 @@ jobs:
             --region us-east-1 \
             --nodegroup-name eksnodegrp \
             --node-type t2.micro \
-            --node 1 \
+            --nodes 1 \
             --nodes-min 1 \
             --modes-max 1 
 
