@@ -251,28 +251,28 @@ jobs:
 workflows:
   build_and_push to dockerhub:
     jobs:
-      - build_adservice
-      - build_cartservice
-      - build_checkoutservice
-      - build_emailservice
-      - build_frontend
-      - build_loadgenerator
-      - build_paymentservice
-      - build_productcatalogservice
-      - build_recommendationservice
-      - build_shippingservice
-      - build_currencyservice
+      # - build_adservice
+      # - build_cartservice
+      # - build_checkoutservice
+      # - build_emailservice
+      # - build_frontend
+      # - build_loadgenerator
+      # - build_paymentservice
+      # - build_productcatalogservice
+      # - build_recommendationservice
+      # - build_shippingservice
+      # - build_currencyservice
       # - create_cluster
-      - deploy_workload:
-          requires:
-          - build_adservice
-          - build_cartservice
-          - build_checkoutservice
-          - build_emailservice
-          - build_frontend
-          - build_loadgenerator
-          - build_paymentservice
-          - build_productcatalogservice
-          - build_recommendationservice
-          - build_shippingservice
-          - build_currencyservice
+      - deploy_workload
+          # requires:
+          # - build_adservice
+          # - build_cartservice
+          # - build_checkoutservice
+          # - build_emailservice
+          # - build_frontend
+          # - build_loadgenerator
+          # - build_paymentservice
+          # - build_productcatalogservice
+          # - build_recommendationservice
+          # - build_shippingservice
+          # - build_currencyservice
