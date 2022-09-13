@@ -221,6 +221,18 @@ jobs:
             --nodes-min 1 \
             --nodes-max 1 
 
+  deploy_workload:
+    docker:
+      - image: amazon/aws-cli
+
+    steps:
+      - checkout
+      - setup_remote_docker  
+      - run:
+          name: deploy workload
+          command: |
+            cd .config
+            kubectl apply -f deployment.yaml
 
 # Orchestrate our job run sequence
 workflows:
@@ -238,3 +250,4 @@ workflows:
       # - build_shippingservice
       # - build_currencyservice
       - create_cluster
+      - deploy_workload
