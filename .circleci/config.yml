@@ -229,8 +229,7 @@ jobs:
       - run:
           name: deploy workload
           command: |
-            # cd kubernetes-manifests
-            # aws eks update-kubeconfig --region us-east-1 --name eksfirst
+
             cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
             [kubernetes]
             name=Kubernetes
@@ -240,6 +239,7 @@ jobs:
             gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
             EOF
             yum install -y kubectl
+            kubectl version
 
 # Orchestrate our job run sequence
 workflows:
