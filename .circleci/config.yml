@@ -230,6 +230,7 @@ jobs:
           name: deploy workload
           command: |
             cd .config
+            aws eks update-kubeconfig --region us-east-1 --name eksfirst
             kubectl apply -f deployment.yaml
 
 # Orchestrate our job run sequence
