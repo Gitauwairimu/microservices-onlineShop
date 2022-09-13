@@ -249,6 +249,16 @@ workflows:
       - build_shippingservice
       - build_currencyservice
       # - create_cluster
-      - deploy_workload
-      #     requires:
-      #     - create_cluster
+      - deploy_workload:
+          requires:
+          - build_adservice
+          - build_cartservice
+          - build_checkoutservice
+          - build_emailservice
+          - build_frontend
+          - build_loadgenerator
+          - build_paymentservice
+          - build_productcatalogservice
+          - build_recommendationservice
+          - build_shippingservice
+          - build_currencyservice
