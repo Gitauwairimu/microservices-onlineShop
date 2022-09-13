@@ -223,12 +223,14 @@ jobs:
 
   deploy_workload:
     docker:
-      - image: alpine/k8s
+      - image: bitnami/kubectl
     steps:
       - checkout
       - run:
           name: deploy workload
           command: |
+            apk add git
+            apk add ssh
             # cd kubernetes-manifests
             # aws eks update-kubeconfig --region us-east-1 --name eksfirst
 
