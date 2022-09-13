@@ -223,7 +223,7 @@ jobs:
 
   deploy_workload:
     docker:
-      - image: d3fk/kubectl 
+      - image: bitnami/kubectl 
     steps:
       - checkout
       - run:
