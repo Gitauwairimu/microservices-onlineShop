@@ -230,7 +230,6 @@ jobs:
           name: deploy workload
           command: |
             apk add git
-            apk add ssh
             # cd kubernetes-manifests
             # aws eks update-kubeconfig --region us-east-1 --name eksfirst
 
