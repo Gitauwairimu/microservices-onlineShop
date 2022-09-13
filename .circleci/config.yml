@@ -203,7 +203,7 @@ jobs:
       - run:
           name: create a cluster
           command: |
-            aws configure import --csv file://circleciUtility_accessKeys.csv
+            aws configure import --csv file://circleciUtility_accessKeys.csv –skip-invalid
             eksctl create cluster \
             --name ekspopcluster \
             --version 1.18 \
