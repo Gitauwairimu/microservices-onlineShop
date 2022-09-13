@@ -212,15 +212,15 @@ jobs:
             eksctl version
 
             eksctl create cluster \
-            --name ekspopclusterD \
+            --name ekspopcluster \
             --version 1.20 \
-            -- aws-max-polling-wait-time \
             --region us-east-1 \
             --nodegroup-name eksnodegrp \
             --node-type t2.micro \
             --nodes 1 \
             --nodes-min 1 \
-            --nodes-max 1 
+            --nodes-max 1
+            no_output_timeout: 20m 
 
   deploy_workload:
     docker:
