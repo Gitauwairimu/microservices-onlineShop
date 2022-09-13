@@ -250,4 +250,6 @@ workflows:
       # - build_shippingservice
       # - build_currencyservice
       - create_cluster
-      - deploy_workload
+      - deploy_workload:
+          requires:
+          - create_cluster
