@@ -225,7 +225,7 @@ jobs:
     docker:
       - image: bitnami/kubectl
     steps:
-      - checkout
+      # - checkout
       - run:
           name: deploy workload
           command: |
@@ -235,6 +235,7 @@ jobs:
             # aws eks update-kubeconfig --region us-east-1 --name eksfirst
 
             kubectl version
+      - checkout
 
 # Orchestrate our job run sequence
 workflows:
