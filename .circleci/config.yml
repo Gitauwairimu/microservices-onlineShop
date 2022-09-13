@@ -241,6 +241,10 @@ jobs:
           name: deploy workload
           command: |
             aws configure import --csv file://circleciUtility_accessKeys.csv
+            mkdir -p $HOME/.kube
+            cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+            chown $(id -u):$(id -g) $HOME/.kube/config
+            kubectl get no
             kubectl apply -f deployment.yaml
 
 # Orchestrate our job run sequence
