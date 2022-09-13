@@ -204,6 +204,7 @@ jobs:
           name: create a cluster
           command: |
             aws configure import --csv file://circleciUtility_accessKeys.csv
+            aws configure list
             eksctl create cluster \
             --name ekspopcluster \
             --version 1.18 \
