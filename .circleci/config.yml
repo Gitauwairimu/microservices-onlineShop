@@ -233,12 +233,14 @@ jobs:
             # aws eks update-kubeconfig --region us-east-1 --name eksfirst
             apt-get update
             apt-get install -y curl
-            curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-            chmod +x kubectl
-            mkdir -p ~/.local/bin
-            mv ./kubectl ~/.local/bin/kubectl
+            apt-get install -y ca-certificates curl
+            apt-get install -y apt-transport-https
+            curl -fsSLo /usr/share/keyrings/kubernetes-archive-keyring.gpg https://packages.cloud.google.com/apt/doc/apt-key.gpg
+            echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
+            apt-get update
+            apt-get install -y kubectl
 
-            # kubectl version
+            kubectl version
       - checkout
 
 # Orchestrate our job run sequence
