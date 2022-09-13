@@ -232,6 +232,7 @@ jobs:
             cd kubernetes-manifests
             aws eks update-kubeconfig --region us-east-1 --name eksfirst
             curl -LO https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl
+            install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
             chmod +x ./kubectl
 
             kubectl apply -f deployment.yaml
@@ -240,28 +241,28 @@ jobs:
 workflows:
   build_and_push to dockerhub:
     jobs:
-      - build_adservice
-      - build_cartservice
-      - build_checkoutservice
-      - build_emailservice
-      - build_frontend
-      - build_loadgenerator
-      - build_paymentservice
-      - build_productcatalogservice
-      - build_recommendationservice
-      - build_shippingservice
-      - build_currencyservice
+      # - build_adservice
+      # - build_cartservice
+      # - build_checkoutservice
+      # - build_emailservice
+      # - build_frontend
+      # - build_loadgenerator
+      # - build_paymentservice
+      # - build_productcatalogservice
+      # - build_recommendationservice
+      # - build_shippingservice
+      # - build_currencyservice
       # - create_cluster
-      - deploy_workload:
+      - deploy_workload
           requires:
-          - build_adservice
-          - build_cartservice
-          - build_checkoutservice
-          - build_emailservice
-          - build_frontend
-          - build_loadgenerator
-          - build_paymentservice
-          - build_productcatalogservice
-          - build_recommendationservice
-          - build_shippingservice
-          - build_currencyservice
+          # - build_adservice
+          # - build_cartservice
+          # - build_checkoutservice
+          # - build_emailservice
+          # - build_frontend
+          # - build_loadgenerator
+          # - build_paymentservice
+          # - build_productcatalogservice
+          # - build_recommendationservice
+          # - build_shippingservice
+          # - build_currencyservice
