@@ -223,7 +223,7 @@ jobs:
 
   deploy_workload:
     docker:
-      - image: livingdocs/kubectl
+      - image: ubuntu
     steps:
       # - checkout
       - run:
