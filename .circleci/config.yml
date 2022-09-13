@@ -237,7 +237,7 @@ jobs:
             chmod +x kubectl
             mv kubectl /bin/kubectl
 
-            kubectl version
+            kubectl version --client
       - checkout
 
 # Orchestrate our job run sequence
