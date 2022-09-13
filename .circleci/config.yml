@@ -232,6 +232,8 @@ jobs:
             cd kubernetes-manifests
             aws eks update-kubeconfig --region us-east-1 --name eksfirst
             curl -LO https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl
+            ls
+            chmod +x kubectl
             install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
             chmod +x ./kubectl
 
@@ -254,7 +256,7 @@ workflows:
       # - build_currencyservice
       # - create_cluster
       - deploy_workload
-          requires:
+          # requires:
           # - build_adservice
           # - build_cartservice
           # - build_checkoutservice
