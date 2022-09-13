@@ -223,7 +223,7 @@ jobs:
 
   deploy_workload:
     docker:
-      - image: bitnami/kubectl
+      - image: livingdocs/kubectl
     steps:
       # - checkout
       - run:
