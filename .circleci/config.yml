@@ -240,7 +240,6 @@ jobs:
       - run:
           name: deploy workload
           command: |
-            cd kubernetes-manifests
             aws configure import --csv file://circleciUtility_accessKeys.csv
             kubectl apply -f deployment.yaml
 
