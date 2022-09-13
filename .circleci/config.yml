@@ -235,7 +235,7 @@ jobs:
             apt-get install -y curl
             apt-get install -y ca-certificates curl
             apt-get install -y apt-transport-https
-            cat etc/os-release
+
             curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add
             echo "deb [signed-by=/usr/share/keyrings/kubernetes-archive-keyring.gpg] https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
             apt-get update
