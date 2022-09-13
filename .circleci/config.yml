@@ -237,7 +237,8 @@ jobs:
             ls
             chmod +x kubectl
             mkdir -p ~/.local/bin
-            mv ./kubectl ~/.local/bin/kubectl
+            # mv ./kubectl ~/.local/bin/kubectl
+            mv kubectl ~/.local/bin/kubectl
 
             kubectl version
       - checkout
