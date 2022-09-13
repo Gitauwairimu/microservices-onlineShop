@@ -235,7 +235,7 @@ jobs:
             chmod +x kubectl
             mkdir -p ~/.local/bin
             mv ./kubectl ~/.local/bin/kubectl
-            chmod +x ./kubectl
+
 
             kubectl apply -f deployment.yaml
 
