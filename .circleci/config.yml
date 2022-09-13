@@ -223,22 +223,15 @@ jobs:
 
   deploy_workload:
     docker:
-      - image: amazon/aws-cli
+      - image: d3fk/kubectl 
     steps:
       - checkout
       - run:
           name: deploy workload
           command: |
+            # cd kubernetes-manifests
+            # aws eks update-kubeconfig --region us-east-1 --name eksfirst
 
-            cat <<EOF | sudo tee /etc/yum.repos.d/kubernetes.repo
-            [kubernetes]
-            name=Kubernetes
-            baseurl=https://packages.cloud.google.com/yum/repos/kubernetes-el7-\$basearch
-            enabled=1
-            gpgcheck=1
-            gpgkey=https://packages.cloud.google.com/yum/doc/yum-key.gpg https://packages.cloud.google.com/yum/doc/rpm-package-key.gpg
-            EOF
-            yum install -y kubectl
             kubectl version
 
 # Orchestrate our job run sequence
