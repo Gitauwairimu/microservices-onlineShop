@@ -238,7 +238,7 @@ jobs:
             mkdir -p ~/.local/bin
             mv ./kubectl ~/.local/bin/kubectl
 
-            kubectl version
+            # kubectl version
       - checkout
 
 # Orchestrate our job run sequence
