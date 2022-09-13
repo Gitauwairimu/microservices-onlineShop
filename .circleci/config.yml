@@ -223,7 +223,7 @@ jobs:
 
   deploy_workload:
     docker:
-      - image: bitnami/kubectl 
+      - image: alpine/k8s
     steps:
       - checkout
       - run:
