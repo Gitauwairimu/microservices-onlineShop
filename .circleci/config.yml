@@ -226,9 +226,9 @@ jobs:
       - image: amazon/aws-cli
 
     steps:
-      # - checkout
+      - checkout
       - run:
-          name: deploy workload
+          name: install kubectl
           command: |
             # cd kubernetes-manifests
             # aws eks update-kubeconfig --region us-east-1 --name eksfirst
@@ -237,35 +237,39 @@ jobs:
             chmod +x kubectl
             mv kubectl /bin/kubectl
 
-            kubectl version --client
-      - checkout
+      - run:
+          name: deploy workload
+          command: |
+            cd kubernetes-manifests
+            aws configure import --csv file://circleciUtility_accessKeys.csv
+            kubectl apply -f deployment.yaml
 
 # Orchestrate our job run sequence
 workflows:
   build_and_push to dockerhub:
     jobs:
-      # - build_adservice
-      # - build_cartservice
-      # - build_checkoutservice
-      # - build_emailservice
-      # - build_frontend
-      # - build_loadgenerator
-      # - build_paymentservice
-      # - build_productcatalogservice
-      # - build_recommendationservice
-      # - build_shippingservice
-      # - build_currencyservice
+      - build_adservice
+      - build_cartservice
+      - build_checkoutservice
+      - build_emailservice
+      - build_frontend
+      - build_loadgenerator
+      - build_paymentservice
+      - build_productcatalogservice
+      - build_recommendationservice
+      - build_shippingservice
+      - build_currencyservice
       # - create_cluster
-      - deploy_workload
-          # requires:
-          # - build_adservice
-          # - build_cartservice
-          # - build_checkoutservice
-          # - build_emailservice
-          # - build_frontend
-          # - build_loadgenerator
-          # - build_paymentservice
-          # - build_productcatalogservice
-          # - build_recommendationservice
-          # - build_shippingservice
-          # - build_currencyservice
+      - deploy_workload:
+          requires:
+          - build_adservice
+          - build_cartservice
+          - build_checkoutservice
+          - build_emailservice
+          - build_frontend
+          - build_loadgenerator
+          - build_paymentservice
+          - build_productcatalogservice
+          - build_recommendationservice
+          - build_shippingservice
+          - build_currencyservice
