@@ -233,8 +233,8 @@ jobs:
             # cd kubernetes-manifests
             # aws eks update-kubeconfig --region us-east-1 --name eksfirst
             yum check-update
-            yum install curl
             curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+            ls
             chmod +x kubectl
             mkdir -p ~/.local/bin
             mv ./kubectl ~/.local/bin/kubectl
