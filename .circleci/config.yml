@@ -229,7 +229,7 @@ jobs:
       - run:
           name: deploy workload
           command: |
-            cd .config
+            cd kubernetes-manifests
             aws eks update-kubeconfig --region us-east-1 --name eksfirst
             kubectl apply -f deployment.yaml
 
