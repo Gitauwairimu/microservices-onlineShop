@@ -212,7 +212,7 @@ jobs:
             eksctl version
 
             eksctl create cluster \
-            --name ekspopcluster1 \
+            --name ekspopclusterD \
             --version 1.20 \
             -- aws-max-polling-wait-time \
             --region us-east-1 \
