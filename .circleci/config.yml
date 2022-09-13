@@ -219,7 +219,7 @@ jobs:
             --node-type t2.micro \
             --nodes 1 \
             --nodes-min 1 \
-            --modes-max 1 
+            --nodes-max 1 
 
 
 # Orchestrate our job run sequence
