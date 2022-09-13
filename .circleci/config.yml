@@ -212,7 +212,7 @@ jobs:
             eksctl version
 
             eksctl create cluster \
-            --name ekspopcluster2 \
+            --name ekspopclusta \
             --version 1.20 \
             --region us-east-1 \
             --nodegroup-name eksnodegrp \
